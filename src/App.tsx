@@ -10,7 +10,7 @@ function App() {
 
       <ul>
         {listeningHistory.map((event) => (
-          <li key={event.timestamp}>
+          <li key={event.timestamp.toISOString()}>
             {event.trackName} - {event.artistName}
           </li>
         ))}
