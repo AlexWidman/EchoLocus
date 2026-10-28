@@ -1,7 +1,8 @@
 import { parseStreamingRecord } from './parser'
-import type { SpotifyStreamingRecord } from './types'
+import type { ListeningEvent } from './types'
+import { normalizeStreamingRecord } from './normalizer'
 
-export async function importHistory(files: File[],): Promise<SpotifyStreamingRecord[]> {
+export async function importHistory(files: File[],): Promise<ListeningEvent[]> {
     const histories = await Promise.all(
         files.map(async (file) => {
             try {
@@ -14,5 +15,5 @@ export async function importHistory(files: File[],): Promise<SpotifyStreamingRec
             }
         }),
     )
-    return histories.flat()
+    return histories.flat().map(normalizeStreamingRecord)
 }

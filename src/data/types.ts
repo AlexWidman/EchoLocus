@@ -32,15 +32,23 @@ export type SpotifyStreamingRecord = {
 
 // Data relevant for EchoLocus, picked out from the extended listening data
 export type ListeningEvent = {
-  timestamp: string
+  timestamp: Date
+  contentType: 'track' | 'podcast' | 'audiobook' | 'unknown'
+
   platform: string
   country: string
-
-  trackName: string
-  artistName: string
-  albumName: string
-  trackUri: string
-
   msPlayed: number
   skipped: boolean
+
+  trackName: string | null
+  artistName: string | null
+  albumName: string | null
+  trackUri: string | null
+
+  episodeName: string | null
+  showName: string | null
+  episodeUri: string | null
+
+  audiobookTitle: string | null
+  audiobookChapterTitle: string | null
 }
